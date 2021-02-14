@@ -6,6 +6,16 @@ Obj.Draw = function( self )
 	if (self.a>0) then
 		surface.SetDrawColor( self.r, self.g, self.b, self.a )
 		surface.DrawTexturedRectRotated( self.x, self.y, self.w, self.h, self.angle )
+
+		--local old = DisableClipping( true ) -- Avoid issues introduced by the natural clipping of Panel rendering
+		render.RenderView( {
+			origin = Vector( 0, 0, 0 ),
+			angles = Angle( 0, 0, 0 ),
+			x = self.x, y = self.y,
+			w = self.w, h = self.h,
+			drawviewmodel = false,
+		} )
+		--DisableClipping( old )
 	end
 end
 Obj.Transmit = function( self )
